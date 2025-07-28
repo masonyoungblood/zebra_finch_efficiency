@@ -18,7 +18,7 @@ output:
 #   - Mason Youngblood ^[Institute for Advanced Computational Science, Stony Brook University]
 # output:
 #   bookdown::word_document2:
-#     reference_docx: "template.docx"
+#     reference_docx: "misc/template.docx"
 #     global_numbering: true
 always_allow_html: true
 bibliography: misc/bibliography.json
@@ -28,7 +28,6 @@ fig_caption: true
 ---
 
 <!-- bibliography management done via (cmd+k to insert): https://gsverhoeven.github.io/post/zotero-rmarkdown-csl/ -->
-
 <!-- github hosting done via: https://mbounthavong.com/blog/2022/7/30/hosting-a-r-markdown-html-file-on-a-github-page -->
 
 ```{r word-doc, echo = FALSE, eval = TRUE}
@@ -56,7 +55,7 @@ div.col-md-12 .pull-right {
 # Links {.unnumbered}
 
 -   [Main text](https://masonyoungblood.github.io/zebra_finch_efficiency/)
--   [PsyArXiv preprint](URL)
+<!-- -   [PsyArXiv preprint](URL) -->
 -   [GitHub repository](https://github.com/masonyoungblood/zebra_finch_efficiency)
 
 ```{r, message = FALSE, warning = FALSE}
@@ -99,6 +98,8 @@ load("models/rank_freq_model_imp_md.RData")
 load("models/rank_freq_model_imp_hi.RData")
 ```
 
+After being tutored with these random songs, the zebra finches produced songs that exhibit patterns consistent with both Menzerath's law and Zipf's rank-frequency law---longer sequences are composed of shorter syllables (Est.: `r format(round(fixef(menz_model)[2, 1], 3), 3)`, 95% CI: `r format(round(fixef(menz_model)[2, 3], 3), 3)`---`r format(round(fixef(menz_model)[2, 4], 3), 3)`) (second column of Figure \@ref(fig:figure-distributions)), and the relationship between the ranks and frequency of syllable types fits a power-law with $R^2$ of `r format(round(bayes_R2(rank_freq_model)[1], 3), 3)` (95% CI: `r format(round(bayes_R2(rank_freq_model)[3], 3), 3)`---`r format(round(bayes_R2(rank_freq_model)[4], 3), 3)`) (third column of Figure \@ref(fig:figure-distributions)). There is only weak evidence for Zipf's law of abbreviation, with a negative but uncertain relationship between frequency and syllable duration (Est.: `r format(round(fixef(brev_model)[2, 1], 3), 3)`, 95% CI: `r format(round(fixef(brev_model)[2, 3], 3), 3)`---`r format(round(fixef(brev_model)[2, 4], 3), 3)`) (first column of Figure \@ref(fig:figure-distributions)). More details about the models can be seen in Table \@ref(tab:table-combined).
+
 ```{r figure-distributions, echo = FALSE, fig.align = "center", out.width = "100%", fig.cap = "Distributions for tutor songs (top) and learned songs (bottom), showing: syllable counts vs. durations (left), sequence lengths vs. syllable durations (middle), and syllable ranks vs. counts (right)."}
 knitr::include_graphics("plots/distributions.png")
 ```
@@ -139,8 +140,6 @@ combined_table <- flextable(rbind(brev_table, menz_table, rank_freq_table)) %>%
   colformat_md()
 combined_table
 ```
-
-After being tutored with these random songs, the zebra finches produced songs that exhibit patterns consistent with both Menzerath's law and Zipf's rank-frequency law---longer sequences are composed of shorter syllables (Est.: `r format(round(fixef(menz_model)[2, 1], 3), 3)`, 95% CI: `r format(round(fixef(menz_model)[2, 3], 3), 3)`---`r format(round(fixef(menz_model)[2, 4], 3), 3)`) (second column of Figure \@ref(fig:figure-distributions)), and the relationship between the ranks and frequency of syllable types fits a power-law with $R^2$ of `r format(round(bayes_R2(rank_freq_model)[1], 3), 3)` (95% CI: `r format(round(bayes_R2(rank_freq_model)[3], 3), 3)`---`r format(round(bayes_R2(rank_freq_model)[4], 3), 3)`) (third column of Figure \@ref(fig:figure-distributions)). There is only weak evidence for Zipf's law of abbreviation, with a negative but uncertain relationship between frequency and syllable duration (Est.: `r format(round(fixef(brev_model)[2, 1], 3), 3)`, 95% CI: `r format(round(fixef(brev_model)[2, 3], 3), 3)`---`r format(round(fixef(brev_model)[2, 4], 3), 3)`) (first column of Figure \@ref(fig:figure-distributions)). More details about the models can be seen in Table \@ref(tab:table-combined).
 
 The main results for both of Zipf's laws, which make predictions about types, exclude the 30% of syllables that could not be assigned to the five common syllable types (i.e., "a"---"e") by James and Sakata [@james_sakata17]. Importantly, the results are qualitatively the same when novel syllables types are imputed by applying hierarchical clustering to their acoustic features, a standard approach in birdsong [@youngblood24] (see [Materials & Methods](#materials-methods)). For Zipf's law of abbreviation, the effect of frequency on syllable duration is `r format(round(fixef(brev_model_imp_lo)[2, 1], 3), 3)` (95% CI: `r format(round(fixef(brev_model_imp_lo)[2, 3], 3), 3)`---`r format(round(fixef(brev_model_imp_lo)[2, 4], 3), 3)`) at the highest granularity (lowest cut height), `r format(round(fixef(brev_model_imp_md)[2, 1], 3), 3)` (95% CI: `r format(round(fixef(brev_model_imp_md)[2, 3], 3), 3)`---`r format(round(fixef(brev_model_imp_md)[2, 4], 3), 3)`) at the middle granularity, and `r format(round(fixef(brev_model_imp_hi)[2, 1], 3), 3)` (95% CI: `r format(round(fixef(brev_model_imp_hi)[2, 3], 3), 3)`---`r format(round(fixef(brev_model_imp_hi)[2, 4], 3), 3)`) at the lowest granularity (highest cut height). The power-law also fits the rank-frequency distribution to a similar extent at all three granularities (highest: $R^2$ = `r format(round(bayes_R2(rank_freq_model_imp_lo)[1], 3), 3)`, middle: $R^2$ = `r format(round(bayes_R2(rank_freq_model_imp_md)[1], 3), 3)`, lowest: $R^2$ = `r format(round(bayes_R2(rank_freq_model_imp_hi)[1], 3), 3)`).
 
