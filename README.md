@@ -1,5 +1,7 @@
 # Zebra finches transform random songs to exhibit linguistic laws
 
+[![DOI](https://zenodo.org/badge/1027880600.svg)](https://doi.org/10.5281/zenodo.16615035)
+
 <br>![](https://www.science.org/do/10.1126/science.aaw8658/full/birds_16x9_0-1644914656757.jpg)
 &copy; Science
 
