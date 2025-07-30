@@ -55,8 +55,7 @@ div.col-md-12 .pull-right {
 # Links {.unnumbered}
 
 - [Main text](https://masonyoungblood.github.io/zebra_finch_efficiency/)
-- [PDF](https://github.com/masonyoungblood/zebra_finch_efficiency/blob/main/docs/Youngblood%20(2025)%20-%20Zebra%20finches%20transform%20random%20songs%20to%20exhibit%20linguistic%20laws.pdf)
-<!-- - [PsyArXiv preprint](URL) -->
+- [PsyArXiv preprint](https://osf.io/m6z23)
 - [GitHub repository](https://github.com/masonyoungblood/zebra_finch_efficiency)
 
 ```{r, message = FALSE, warning = FALSE}
