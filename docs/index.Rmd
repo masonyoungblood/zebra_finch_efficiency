@@ -192,7 +192,7 @@ ggplot(segment(dendro)) +
   geom_hline(yintercept = 0.3, color = "#D55E00") + 
   geom_hline(yintercept = 0.5, color = "#009E73") + 
   geom_segment(aes(x = x, y = y, xend = xend, yend = yend)) +
-  xlab("Clusters") + 
+  xlab("Novel syllables") + 
   ylab("Cut height") + 
   theme_linedraw(base_family = "Avenir") + 
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
@@ -458,7 +458,7 @@ finch <- get_phylopic(uuid = "7bf8ca33-0fef-4985-a4d4-a147bff6e98c")
 png("plots/distributions.png", width = 8, height = 5.4, units = "in", res = 1200)
 plot(1)
 final_plot
-add_phylopic_base(finch, fill = "black", height = 0.08, x = 1.44, y = 1.585)
+add_phylopic_base(finch, fill = "#0072B2", height = 0.08, x = 1.44, y = 1.585)
 dev.off()
 ```
 
